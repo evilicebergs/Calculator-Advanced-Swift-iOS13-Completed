@@ -32,12 +32,13 @@ struct CalculatorLogic {
                 return performTwoNumCalculation(n2: n)
             default:
                 intermediateCalculation = (n1: n, calcMethod: symbol)
+                return n
             }
         }
         return nil 
     }
     
-    private func performTwoNumCalculation(n2: Double) -> Double? {
+    private func performTwoNumCalculation(n2: Double) -> Double {
         
         if let n1 = intermediateCalculation?.n1,
             let operation = intermediateCalculation?.calcMethod {
@@ -55,7 +56,7 @@ struct CalculatorLogic {
                 fatalError("The operation passed in does not match any of the cases.")
             }
         }
-        return nil
+        return n2
     }
     
 }

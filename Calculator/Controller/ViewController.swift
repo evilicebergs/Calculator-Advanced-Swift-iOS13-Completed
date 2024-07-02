@@ -22,7 +22,11 @@ class ViewController: UIViewController {
             return number
         }
         set {
-            displayLabel.text = String(newValue)
+            if floor(newValue) == newValue {
+                displayLabel.text = String(Int(newValue))
+            } else {
+                displayLabel.text = String(newValue)
+            }
         }
     }
     
@@ -38,9 +42,10 @@ class ViewController: UIViewController {
         
         if let calcMethod = sender.currentTitle {
  
-            if let result = calculator.calculate(symbol: calcMethod) {
-                displayValue = result
+            guard let result = calculator.calculate(symbol: calcMethod) else {
+                fatalError("Problem with unwrapping value")
             }
+            displayValue = result
         }
     }
 
